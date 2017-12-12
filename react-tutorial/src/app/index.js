@@ -68,6 +68,7 @@ class ToDo extends React.Component{
 			nos : ['first', 'second', 'third', 'Sixth']			
 		};
 		this.makeStateChange = this.makeStateChange.bind(this);
+		this.onDelete  = this.onDelete.bind(this);
 	}
 	makeStateChange(){
 		console.log('before change==>', this.state.nos);
@@ -102,7 +103,11 @@ class ToDo extends React.Component{
 	}
 }
 
-class TodoList extends React.Component{	
+class TodoList extends React.Component{
+	constructor(props){
+		super(props);
+		this.handleDelete = this.handleDelete.bind(this);
+	}
 	render(){
 		return (
 			<li>
@@ -115,7 +120,7 @@ class TodoList extends React.Component{
 	}
 	handleDelete(){
 		console.log("Clicked Here", this.props);
-		//this.props.onDelete(this.props.item);
+		this.props.onDelete(this.props.item);
 	}
 }
 
