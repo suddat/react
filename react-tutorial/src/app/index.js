@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import {TodoList} from './todoList';
+import {AddItem} from './addItem';
+import './css/index.css';
 /*class ToDo extends React.Component{
 	render(){
 		return (
@@ -67,14 +69,22 @@ class ToDo extends React.Component{
 		this.state = {
 			nos : ['first', 'second', 'third', 'Sixth']			
 		};
-		this.makeStateChange = this.makeStateChange.bind(this);
-		this.onDelete  = this.onDelete.bind(this);
+		this.makeStateChange 	= this.makeStateChange.bind(this);
+		this.onDelete  			= this.onDelete.bind(this);
+		this.handleAdd  		= this.handleAdd.bind(this);
 	}
 	makeStateChange(){
 		console.log('before change==>', this.state.nos);
 		this.state.nos[1] = 'Fifth';
 		this.setState({
 			nos: this.state.nos
+		});
+	}
+	handleAdd(item){
+		var exist_list = this.state.nos;
+		exist_list.push(item);
+		this.setState({
+			nos: exist_list
 		});
 	}
 
@@ -86,9 +96,10 @@ class ToDo extends React.Component{
 			);
 		});
 		return (
-			<div>
+			<div id="todo-list">
 				<ul>{no}</ul>
-				<button onClick={this.makeStateChange}>Change Second</button>
+				{/*<button onClick={this.makeStateChange}>Change Second</button>*/}
+				<AddItem handleAdd = {this.handleAdd} />
 			</div>
 		);
 	}
@@ -101,26 +112,15 @@ class ToDo extends React.Component{
 			nos: newTodoList
 		});
 	}
-}
 
-class TodoList extends React.Component{
-	constructor(props){
-		super(props);
-		this.handleDelete = this.handleDelete.bind(this);
+	componentWillUpdate(){
+		console.log();
 	}
-	render(){
-		return (
-			<li>
-				<div className="todo-item">
-					<span className="item-name">{this.props.item}</span>
-					<span className="item-delete" onClick={this.handleDelete} > => x</span>
-				</div>
-			</li>
-		);
+	componentDidMount(){
+
 	}
-	handleDelete(){
-		console.log("Clicked Here", this.props);
-		this.props.onDelete(this.props.item);
+	componentWillMount(){
+
 	}
 }
 
