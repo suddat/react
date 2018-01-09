@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import {TodoList} from './todoList';
 import {AddItem} from './addItem';
 import './css/index.css';
+import {Route,Router} from 'react-router';
 /*class ToDo extends React.Component{
 	render(){
 		return (
@@ -67,7 +68,7 @@ class ToDo extends React.Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			nos : ['first', 'second', 'third', 'Sixth']			
+			nos : ['first', 'second', 'third', 'Sixth', 'seventh']			
 		};
 		this.makeStateChange 	= this.makeStateChange.bind(this);
 		this.onDelete  			= this.onDelete.bind(this);
@@ -88,8 +89,19 @@ class ToDo extends React.Component{
 		});
 	}
 
+	componentWillUpdate(){
+		console.log("willUpdate parent", this.state.nos);
+	}
+	componentDidMount(){
+		console.log("did Mount parent");
+	}
+	componentWillMount(){
+		console.log("will mount parent");
+	}
+
 	render(){
 		var no = this.state.nos;
+		console.log("in render");
 		no = no.map((item, index) => {
 			return (
 				<TodoList item={item} key={index} onDelete={this.onDelete} />
@@ -111,16 +123,6 @@ class ToDo extends React.Component{
 		this.setState({
 			nos: newTodoList
 		});
-	}
-
-	componentWillUpdate(){
-		console.log();
-	}
-	componentDidMount(){
-
-	}
-	componentWillMount(){
-
 	}
 }
 

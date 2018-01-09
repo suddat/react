@@ -20,4 +20,13 @@ export class TodoList extends React.Component{
 		console.log("Clicked Here", this.props);
 		this.props.onDelete(this.props.item);
 	}
+	componentWillUpdate(){
+		console.log("willUpdate child");
+	}
+	componentDidMount(){
+		console.log("did Mount child");
+	}
+	componentWillMount(){
+		console.log("will mount child");
+	}
 }
